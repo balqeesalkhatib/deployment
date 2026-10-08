@@ -1,26 +1,25 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import Counter from "./components/Counter";
-import Stats from "./components/Stats";
-import History from "./components/History";
-import Notfound from "./components/Notfound";
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-
+//! 1. import createContext fun
+import React, { useState, createContext } from 'react'
+import "./App.css"
+import Home from './components/Home'
+import Card from './components/Card';
+//! 2. execute+export createContext
+export const dotContext = createContext();
 const App = () => {
+  const [name, setName] = useState("Ezz")
+  console.log(name);
+const [student,setStudent]=useState({name:"Nagham",age:21})
   return (
-    <div>
-      <Navbar />
+    //! 3. dotContext.Provider
+    <dotContext.Provider value={{name,student,id:5}}>
+      <div className='App'>App
+        <Card/>
+        <Home name={name} />
 
-      <Routes>
-        <Route path="/counter" element={<Counter />}></Route>
-        <Route path="/stats" element={<Stats />}></Route>
-        <Route path="/History" element={<History />}></Route>
+      </div>
+    </dotContext.Provider>
 
-        <Route path="*" element={<Notfound />}></Route>
-      </Routes>
-    </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
